@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+          docker build . --file ./aws/Dockerfile \
+          --build-arg "AWS_ACCESS_KEY_ID={{ secrets.ACCESS_KEY }}" "AWS_SECRET_ACCESS_KEY={{ secrets.SECRET_KEY }}" \
+          --tag aws-cli:${{ github.sha }}
+          docker run aws-cli:${{ github.sha }}
