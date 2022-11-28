@@ -10,4 +10,4 @@ ENV AWS_DEFAULT_REGION=ap-south-1
 
 RUN apk add aws-cli
 
-CMD ["aws secretsmanager get-secret-value --secret-id mysql_cred_github"] 
+CMD ["aws",  "secretsmanager",  "get-secret-value",  "--secret-id",  "mysql_cred_github"] 
