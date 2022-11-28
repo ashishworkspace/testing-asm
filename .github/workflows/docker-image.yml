@@ -17,7 +17,7 @@ jobs:
     - name: Build the Docker image
       run: |
           docker build . --file ./aws/Dockerfile \
-          --build-arg "AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }}" \
-          --build-arg "AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_KEY }}" \
+          --build-arg "ACCESS_KEY=${{ secrets.ACCESS_KEY }}" \
+          --build-arg "SECRET_KEY=${{ secrets.SECRET_KEY }}" \
           --tag aws-cli:${{ github.sha }}
           docker run aws-cli:${{ github.sha }}
